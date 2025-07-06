@@ -1,0 +1,54 @@
+{
+    "dataset": {
+        "name": "semanticposs",
+        "path": "data/semanticposs_data/",
+        "shape_name": "ct_scan",
+        "voxel_size": 0.05
+    },
+    "trainer": {
+        "name": "sdro",
+        "optimizer": {
+            "type": "adam",
+            "lr": 0.001
+        },
+        "scheduler": {
+            "type": "adam",
+            "lr": 0.001
+        },
+        "maxiter": 40000,
+        "warm_up_end": 1000,
+        "batch_size": 5000,
+        "save_freq": 1000,
+        "val_freq": 1000,
+        "report_freq": 1000,
+        "igr_weight": 0.1,
+        "mask_weight": 0.0, 
+        "resolution": 128,
+        "alpha": 0.8,
+        "rho": 23,
+        "lambda_wasserstain": 0.01,
+        "m_dro": 10
+    },
+    "system": {
+        "logger": "default",
+        "log_dir": "experiments/${dataset.name}/${dataset.shape_name}",
+        "project_name": "dro_project"
+    },
+    "model": {
+        "name": "sdf_model",
+        "sdf_network": {
+            "d_out": 1,
+            "d_in": 3,
+            "d_hidden": 256,
+            "n_layers": 8,
+            "skip_in": [4],
+            "multires": 0,
+            "bias": 0.5,
+            "scale": 1.0,
+            "geometric_init": true,
+            "weight_norm": true
+        }
+    }
+
+   
+}

@@ -1,0 +1,4 @@
+/.vscode
+/__pycache__
+/eval.py
+/gather_results.py
