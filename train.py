@@ -1,6 +1,6 @@
 import os
 os.environ['KDTREE'] = 'ckdtree'   # Can be  ckdtree or napf 
-os.environ['LME'] = 'sum'     # can be 'torch' , 'sum' or 'max'
+os.environ['LME'] = 'torch'     # can be 'torch' , 'sum' or 'max'
 import argparse
 import json
 import torch
