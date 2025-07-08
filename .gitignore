@@ -11,5 +11,6 @@ datasets/__pycache__
 /configs/semanticposs_config.json.json
 experiments/
 iphone_demo/
+trainers/pdiff.py
 
 
