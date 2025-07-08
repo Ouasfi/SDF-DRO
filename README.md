@@ -65,7 +65,7 @@ To train the SDF network, run the following command:
 python train.py sn_config.json
 ```
 This will train the network using the configuration specified in `config.json` and store the trained model in the `results` directory. 
-```
+
 ## Evaluation
 -------------
 
