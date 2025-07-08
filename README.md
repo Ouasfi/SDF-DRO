@@ -92,11 +92,12 @@ The configuration file `configs/conf.conf` contains the following parameters:
 
 If you use this code in your research, please cite the following paper:
 ```
-@inproceedings{SparseOcc,
-  author = {Amine Ouasfi, Shubhendu Jena, Eric Marchand, Adnane Boukhayma},
-  title = {Toward Robust Neural Reconstruction from Sparse Point Sets},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year = {2025},
+@inproceedings{ouasfi2025toward,
+  title={Toward robust neural reconstruction from sparse point sets},
+  author={Ouasfi, Amine and Jena, Shubhendu and Marchand, Eric and Boukhayma, Adnane},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={6552--6562},
+  year={2025}
 }
 ```
 
