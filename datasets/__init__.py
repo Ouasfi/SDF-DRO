@@ -78,7 +78,7 @@ class BaseDataset(Dataset):
             'targets' : self.target_points[index],
             'index': index
         }
-
+    def bbox_unscale(self, pc): return pc
 class PCSampler(Sampler) :
     def __init__(self, dataset, n_poincloud, n_queries):
         assert len(dataset) > 0
@@ -120,4 +120,4 @@ class PCSampler(Sampler) :
 
 
 
-from . import shapenet, sfm, semanticPoss
+from . import shapenet, sfm, semanticPoss, srb

@@ -1,4 +1,15 @@
 /.vscode
-/__pycache__
+*/__pycache__/*
+/__pycache__/*
+datasets/__pycache__
 /eval.py
 /gather_results.py
+/vis.py
+/vis.jpg
+/configs/srb_config_pdiff.json
+/configs/sn_config_pdiff.json
+/configs/semanticposs_config.json.json
+experiments/
+iphone_demo/
+
+

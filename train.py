@@ -1,6 +1,6 @@
 import os
-os.environ['KDTREE'] = 'napf'   # Can be  ckdtree or napf 
-os.environ['LME'] = 'torch'     # can be 'torch' , 'sum' or 'max'
+os.environ['KDTREE'] = 'ckdtree'   # Can be  ckdtree or napf 
+os.environ['LME'] = 'sum'     # can be 'torch' , 'sum' or 'max'
 import argparse
 import json
 import torch
@@ -30,7 +30,7 @@ def main(args):
     if args.shapename:
         config["dataset"]["shape_name"] = args.shapename
     if args.log_dir:
-        config["system"]["log_dir"] = args.log_dir
+        config["trainer"]['log']["log_dir"] = args.log_dir
 
     # Create trainer using the make function
     fix_seeds()
@@ -42,31 +42,7 @@ def main(args):
     torch.save(best['state_dict'], os.path.join(trainer.logger.log_dir, f"weights.pth"))
     best['mesh'].export(os.path.join(trainer.logger.log_dir, f"mesh.obj")) 
 
-    # # Initialize dataloader
-    # sampler = datasets.PCSampler(trainer.dataset, 500, 10)
-    # dataloader = iter(torch.utils.data.DataLoader(dataset=trainer.dataset, sampler=sampler, num_workers=1))
-    
-    # # Start training
-    # fix_seeds()
-    # trainer.train(dataloader)
 
-
-
-    #Initialize dataloader
-    # sampler = datasets.PCSampler(trainer.dataset, 1000, 5)
-    # #fix_seeds()
-    # train_loader = torch.utils.data.DataLoader(
-    #                             trainer.dataset, 
-    #                             sampler=sampler,
-    #                             num_workers=4, # Use multiple workers
-    #                             pin_memory=True,  # For GPU transfer
-    #                             persistent_workers=True,  # Keep workers alive
-    #                             prefetch_factor=4)  # Prefetch batches)
-    # dataloader = iter(train_loader)
-    #dataloader = None
-    # Start training
-    #fix_seeds()
-    #trainer.train()
 
 
 if __name__ == "__main__":

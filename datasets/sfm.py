@@ -18,7 +18,7 @@ class SFMDataset(datasets.BaseDataset):
         
         returns a dict containing the points, occupancy grid, pointcloud, and normals.
         """
-
+        print('Pointcloud path:', datapath + f'{self.config.shape_name}')
         pcd = o3d.io.read_point_cloud(datapath + f'{self.config.shape_name}.ply' )
         print("Initial point cloud size: ",np.asarray(pcd.points).shape)
         #pcd.points = o3d.utility.Vector3dVector(pointcloud)

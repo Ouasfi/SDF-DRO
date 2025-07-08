@@ -52,11 +52,11 @@ class BaseTrainer (torch.nn.Module):
     def validation_step(self, dataset):
         b_min, b_max = dataset.bounds
         mc_threshold = 0
-        gt_points = np.asarray(dataset.data['pc']  ).astype(np.float32)
+        gt_points = self.val_points
         metrics_dict, mesh, rec_p = evaluation.CD_from_SDF(
             b_min, b_max, lambda pts: -self.model(pts.cuda()),
             point_gt=gt_points ,
-            resolution=256,
+            resolution=self.config.resolution,
             threshold=mc_threshold
         )
         return metrics_dict, mesh, rec_p

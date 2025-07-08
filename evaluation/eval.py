@@ -171,8 +171,8 @@ def cd_flann(recon_points, gt_points):
 def cd_ckdtree(recon_points, gt_points):
     recon_kd_tree = KDTree(recon_points)
     gt_kd_tree = KDTree(gt_points)
-    re2gt_distances, re2gt_vertex_ids = recon_kd_tree.query(gt_points, n_jobs=10)
-    gt2re_distances, gt2re_vertex_ids = gt_kd_tree.query(recon_points, n_jobs=10)
+    re2gt_distances, re2gt_vertex_ids = recon_kd_tree.query(gt_points, workers=10)
+    gt2re_distances, gt2re_vertex_ids = gt_kd_tree.query(recon_points, workers=10)
 
     cd_re2gt = np.mean(re2gt_distances)
     cd_gt2re = np.mean(gt2re_distances)

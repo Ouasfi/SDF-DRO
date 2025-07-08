@@ -4,9 +4,9 @@
         "n_points": 1,
         "sigma": 0.0,
         "n_queries": 1,
-        "dataset_path": "/home/amine/Neural_Adv/duster_data/ct/",
-        "shape_name": "ribseg",
-        "voxel_size": 0.5
+        "dataset_path": "/home/amine/SDF_DRO/iphone_demo/", 
+        "shape_name": "point_cloud_1",
+        "voxel_size": 0.004
     },
     "trainer": {
         "name": "sdro",

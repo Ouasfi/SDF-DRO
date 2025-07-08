@@ -29,4 +29,4 @@ def __from_env():
     print(f" LME: {LME}")
 __from_env()
 from .base import BaseTrainer
-from . import sdro
+from . import sdro, pdiff

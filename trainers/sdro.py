@@ -16,10 +16,9 @@ class SDROTrainer (trainers.base.BaseTrainer):
     """
     def __init__(self, config):
         super().__init__(config)
-        # self.dataset = models.make( config.dataset.name, config.dataset)
-        # self.model = models.make( config.model.name, self.config.model)
+
         self.model = torch.compile(self.model)
-        # self.config = config
+
         self.prepare()
     
     def prepare(self):
@@ -32,13 +31,10 @@ class SDROTrainer (trainers.base.BaseTrainer):
         self.alpha = self.config.alpha
 
     def forward(self, batch):
-       # x = batch['queries']
-        #x.requires_grad_(True)
-        #grad, sdf = self.model.gradient(x) , self.model.sdf (x) #self.model.sdf_with_grad(batch['queries'])
+
         sdf, grad =  self.model.sdf_with_grad(batch['queries'])
         return  {'sdf' : sdf, "grad" : F.normalize(grad.squeeze(), dim=1) }
     
- 
     def npull_loss (self,  batch):
         output = self(batch)
         p , q , sdf_q, grad_q = batch['targets'] , batch['queries'], output['sdf'], output['grad']
@@ -57,9 +53,7 @@ class SDROTrainer (trainers.base.BaseTrainer):
         q_Q_rho_loss = torch.linalg.norm((p.unsqueeze(0) - pulled_q_Q_rho), ord=2, dim=-1)/self.rho_lambda
         sdro_loss =  utils.log_mean_exp(q_Q_rho_loss, dim = 0)
         return sdro_loss.mean()
-        #sdro_loss    = torch.log(torch.mean(torch.exp(q_Q_rho_loss), dim=0)) * self.rho_lambda#.squeeze(0).squeeze(-1)
-        #sdro_loss =  log_mean_exp(q_Q_rho_loss, dim=0)*self.rho_lambda
-        #sdro_loss = (q_Q_rho_loss.logsumexp(dim=0) - math.log (self.m_dro)).squeeze() *self.rho_lambda
+
     def training_step(self, batch, batch_idx):
         self.scheduler.update_learning_rate(batch_idx)
         sdf_loss =  self.npull_loss( batch)

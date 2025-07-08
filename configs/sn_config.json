@@ -6,7 +6,7 @@
         "n_queries": 1,
         "dataset_path": "/home/amine/data/ShapeNet/",
         "shape_name": "04379243/cd4e8748514e028642d23b95defe1ce5/",
-        "voxel_size": 0.05
+        "voxel_size": 0.005
     },
     "trainer": {
         "name": "sdro",
