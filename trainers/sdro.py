@@ -51,7 +51,7 @@ class SDROTrainer (trainers.base.BaseTrainer):
         sdf_q_Q_rho, grad_q_Q_rho = output['sdf'], output['grad']
         pulled_q_Q_rho =  (q_Q_rho - grad_q_Q_rho*sdf_q_Q_rho ).view(-1, q.size(0), q.size(1) )
         q_Q_rho_loss = torch.linalg.norm((p.unsqueeze(0) - pulled_q_Q_rho), ord=2, dim=-1)/self.rho_lambda
-        sdro_loss =  utils.log_mean_exp(q_Q_rho_loss, dim = 0)
+        sdro_loss =  utils.log_mean_exp(q_Q_rho_loss, dim = 0)*self.rho_lambda
         return sdro_loss.mean()
 
     def training_step(self, batch, batch_idx):
